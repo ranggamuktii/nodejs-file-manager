@@ -1,0 +1,15 @@
+{
+  "name": "week7-nodejs-master",
+  "version": "1.0.0",
+  "description": "### Deskripsi Tugas Sebagai seorang Nodejs developer kamu diminta untuk membuat sebuah aplikasi berbasis CLI yang digunakan untuk keperluan manajemen file system.Aplikasi ini akan digunakan untuk menata ulang dan merapikan sebuah folder.Aplikasi ini mempunyai beberapa fitur utama diantaranya :",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "week7-nodejs-master": "file:"
+  }
+}
