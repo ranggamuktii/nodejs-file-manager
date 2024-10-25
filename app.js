@@ -42,4 +42,23 @@ app.makeFile = () => {
   });
 };
 
+app.extSorter = () => {
+  const files = fs.readdirSync('unorganize_folder');
+
+  const moveFile = (folderName, file) => {
+    fs.mkdir(__dirname + `/${folderName}/`, () => {
+      fs.rename(__dirname + '/unorganize_folder/' + file, __dirname + `/${folderName}/` + file, (err) => {});
+    });
+  };
+
+  for (let index = 0; index < files.length; index++) {
+    const file = files[index];
+    const extName = file.split('.')[file.split('.').length - 1];
+
+    if (['txt', 'pdf', 'md', 'jpg', 'png'].includes(extName)) {
+      moveFile(extName, file);
+    }
+  }
+};
+
 module.exports = app;
