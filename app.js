@@ -61,4 +61,51 @@ app.extSorter = () => {
   }
 };
 
+app.readFolder = () => {
+  rl.question('Masukan Nama Folder : ', (folderName) => {
+    const pathFolder = `${__dirname}/${folderName}`;
+
+    const result = [];
+
+    if (fs.existsSync(pathFolder)) {
+      console.log('folder exists');
+    } else {
+      console.log('folder not found!');
+      rl.close();
+    }
+
+    const listFile = fs.readdirSync(pathFolder);
+
+    for (let index = 0; index < listFile.length; index++) {
+      const file = listFile[index];
+
+      const detail = fs.statSync(pathFolder + '/' + file);
+      const extName = file.split('.')[file.split('.').length - 1];
+      const ukuranFileBytes = detail.size >= 1024 * 1024 ? (detail.size / (1024 * 1024)).toFixed(2) + 'mb' : (detail.size / 1024).toFixed(2) + 'kb';
+
+      let typeFile = '';
+
+      if (['jpg', 'png'].includes(extName)) {
+        typeFile = 'gambar';
+      } else if (['txt', 'md'].includes(extName)) {
+        typeFile = 'text';
+      } else if (['pdf'].includes(extName)) {
+        typeFile = 'document';
+      } else {
+        typeFile = 'Tidak terdeteksi';
+      }
+
+      result.push({
+        namaFile: file,
+        extensi: extName,
+        jenisFile: typeFile,
+        tanggalDibuat: detail.birthtime.toISOString().split('T')[0],
+        ukuranFile: ukuranFileBytes,
+      });
+    }
+    console.log(result);
+    rl.close();
+  });
+};
+
 module.exports = app;
