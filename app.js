@@ -108,4 +108,35 @@ app.readFolder = () => {
   });
 };
 
+app.readFile = () => {
+  rl.question('Masukan Nama Folder : ', (folderName) => {
+    const pathFolder = `${__dirname}/${folderName}`;
+
+    const result = [];
+
+    if (fs.existsSync(pathFolder)) {
+      console.log('folder exists');
+    } else {
+      console.log('folder not found!');
+      rl.close();
+    }
+
+    const listFile = fs.readdirSync(pathFolder);
+
+    console.log(listFile);
+    rl.question('Masukan Nama File : ', (fileName) => {
+      const pathFile = `${__dirname}/${folderName}`;
+
+      if (fs.existsSync(pathFile)) {
+        const typeFile = fs.readFileSync(pathFile + '/' + fileName);
+        console.log(typeFile.toString());
+        rl.close();
+      } else {
+        console.log('file not found!');
+        rl.close();
+      }
+    });
+  });
+};
+
 module.exports = app;
