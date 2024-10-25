@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "make-folder": "node index.js make-folder",
-    "make-file": "node index.js make-file"
+    "make-file": "node index.js make-file",
+    "ext-sorter": "node index.js ext-sorter"
   },
   "keywords": [],
   "author": "",
