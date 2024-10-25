@@ -17,4 +17,14 @@ app.makeFolder = () => {
   });
 };
 
+app.makeFile = () => {
+  rl.question('Masukan Nama File : ', (fileName) => {
+    rl.question('Masukan Extension File : ', (extName) => {
+      fs.writeFile(__dirname + `/${fileName}.${extName}`, '', () => {
+        console.log('success created new file');
+      });
+    });
+  });
+};
+
 module.exports = app;
