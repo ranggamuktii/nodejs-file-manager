@@ -32,9 +32,11 @@ app.makeFile = () => {
 
     rl.question('Masukan Nama File : ', (fileName) => {
       rl.question('Masukan Extension File : ', (extName) => {
-        fs.writeFileSync(`${pathFolder}/${fileName}.${extName}`, '');
-        console.log('success created new file');
-        rl.close();
+        rl.question('Masukan Isi File : ', (fileData) => {
+          fs.writeFileSync(`${pathFolder}/${fileName}.${extName}`, `${fileData}`);
+          console.log('success created new file');
+          rl.close();
+        });
       });
     });
   });

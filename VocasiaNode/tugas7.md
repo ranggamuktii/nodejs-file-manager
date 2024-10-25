@@ -1,0 +1,1 @@
+Ini minggu ke 7 saya belajar di vocasia
