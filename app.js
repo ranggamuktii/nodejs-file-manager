@@ -18,10 +18,23 @@ app.makeFolder = () => {
 };
 
 app.makeFile = () => {
-  rl.question('Masukan Nama File : ', (fileName) => {
-    rl.question('Masukan Extension File : ', (extName) => {
-      fs.writeFile(__dirname + `/${fileName}.${extName}`, '', () => {
+  rl.question('Masukan Nama Folder : ', (folderName) => {
+    const pathFolder = `${__dirname}/${folderName}`;
+
+    // Kita cek apakah foldernya udah ada atau belum
+    if (!fs.existsSync(pathFolder)) {
+      // Foldernya belum ada, jadi kita buat baru
+      fs.mkdirSync(pathFolder);
+      console.log('success created new folder');
+    } else {
+      console.log('folder already exists');
+    }
+
+    rl.question('Masukan Nama File : ', (fileName) => {
+      rl.question('Masukan Extension File : ', (extName) => {
+        fs.writeFileSync(`${pathFolder}/${fileName}.${extName}`, '');
         console.log('success created new file');
+        rl.close();
       });
     });
   });
